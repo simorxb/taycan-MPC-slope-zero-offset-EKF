@@ -15,6 +15,9 @@ t_force = out.logsout.get('force').Values.Time;
 theta = out.logsout.get('theta').Values.Data;
 t_theta = out.logsout.get('theta').Values.Time;
 
+xhat = out.logsout.get('xhat').Values.Data;
+t_xhat = out.logsout.get('xhat').Values.Time;
+
 % Create the first figure
 figure;
 
@@ -23,18 +26,23 @@ subplot(3, 1, 1);
 plot(t_speed, speed, 'LineWidth', 2);
 hold on;
 stairs(t_speed_ref, speed_ref, '--', 'LineWidth', 2);
+stairs(t_xhat, xhat(:, 1), 'LineWidth', 2);
 hold off;
 %xlabel('Time (s)');
 ylabel('Speed (m/s)');
-legend({'Measured', 'Setpoint'}, 'FontSize', 12);
+legend({'Measured', 'Setpoint', 'Estimated - EKF'}, 'FontSize', 12);
 set(gca, 'FontSize', 12);
 grid on;
 
 % Subplot for force
 subplot(3, 1, 2);
 stairs(t_force, force, 'LineWidth', 2);
+hold on;
+stairs(t_xhat, xhat(:, 2), 'LineWidth', 2);
+hold off;
 %xlabel('Time (s)');
 ylabel('Force (N)');
+legend({'Control Input', 'Estimated Disturbance - EKF'}, 'FontSize', 12);
 set(gca, 'FontSize', 12);
 grid on;
 
