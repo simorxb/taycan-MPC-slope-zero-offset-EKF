@@ -6,6 +6,9 @@ t_speed = out.logsout.get('speed').Values.Time;
 speed_ref = out.logsout.get('speed_ref').Values.Data;
 t_speed_ref = out.logsout.get('speed_ref').Values.Time;
 
+speed_meas = out.logsout.get('speed_meas').Values.Data;
+t_speed_meas = out.logsout.get('speed_meas').Values.Time;
+
 cost = out.logsout.get('cost').Values.Data;
 t_cost = out.logsout.get('cost').Values.Time;
 
@@ -25,12 +28,13 @@ figure;
 subplot(3, 1, 1);
 plot(t_speed, speed, 'LineWidth', 2);
 hold on;
+plot(t_speed_meas, speed_meas, 'LineWidth', 2);
 stairs(t_speed_ref, speed_ref, '--', 'LineWidth', 2);
 stairs(t_xhat, xhat(:, 1), 'LineWidth', 2);
 hold off;
 %xlabel('Time (s)');
 ylabel('Speed (m/s)');
-legend({'Measured', 'Setpoint', 'Estimated - EKF'}, 'FontSize', 12);
+legend({'Actual', 'Measured', 'Setpoint', 'Estimated - EKF'}, 'FontSize', 12);
 set(gca, 'FontSize', 12);
 grid on;
 

@@ -20,6 +20,9 @@ F_min = -20000;
 % Gravity
 g = 9.81;
 
+% Simulation sample time
+Tsim = 0.2;
+
 %% Nonlinear Model Predictive Controller Configuration
 
 % Create nonlinear MPC controller object
