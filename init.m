@@ -53,3 +53,11 @@ nlobj.Weights.ManipulatedVariablesRate = 0.002; % Small penalty on force changes
 x0 = [10; 0];    % Initial speed (m/s)
 u0 = 500;   % Initial force (N)
 validateFcns(nlobj, x0, u0, [], {});
+
+%% Setpoint and disturbance
+
+% Road slope angle (degrees)
+theta_V = [0 10 -10];
+
+% Reference speed trajectory points (m/s)
+speed_ref_V = 40;
