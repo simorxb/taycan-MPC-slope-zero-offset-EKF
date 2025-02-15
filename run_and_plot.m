@@ -66,7 +66,7 @@ for sim_idx = 1:length(w_V)
     stairs(t_force{sim_idx}, force{sim_idx}, 'LineWidth', 2);
 end
 hold off;
-%xlabel('Time (s)');
+xlabel('Time (s)');
 ylabel('Force (N)');
 legend(arrayfun(@(x) sprintf('MV Rate Weight = %.4f', w_V(x)), 1:length(w_V), 'UniformOutput', false), 'FontSize', 12);
 set(gca, 'FontSize', 12);
