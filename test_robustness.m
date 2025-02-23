@@ -114,7 +114,7 @@ for m_idx = 1:length(m_V)
 end
 hold off;
 xlabel('Time (s)');
-ylabel('Force (N)');
+ylabel('Force Disturbance (N)');
 legend(legend_labels, 'FontSize', 8);
 set(gca, 'FontSize', 12);
 grid on;
