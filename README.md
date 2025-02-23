@@ -52,6 +52,19 @@ This allows real-time disturbance estimation and compensation.
 ### Simulation Results
 The integrated MPC + EKF control architecture ensures smooth speed control with minimal overshoot and zero steady-state error, even under varying slope conditions.
 
+### Tuning
+We explore the behaviour of the control algorithm when the weight related to the control error is kept constant (1) and the weight related to the rate of change of the manipulated variables varies.
+
+We use 3 different configurations, from a very small penalty (we are not interested in how fast we vary the manipulated variables) to a high penalty (we don't want to vary the manipulated variables too fast):
+
+- **Small penalty**: 0.0001
+
+- **Medium penalty**: 0.002
+
+- **High penalty**: 0.007
+
+Use the script 'run_and_plot' to run the 3 scenarios.
+
 ## Code and Model
 The MATLAB and Simulink models for this project are available in the GitHub repository: [taycan-MPC-slope-zero-offset-EKF](https://github.com/simorxb/taycan-MPC-slope-zero-offset-EKF).
 
