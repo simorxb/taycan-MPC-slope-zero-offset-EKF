@@ -65,6 +65,33 @@ We use 3 different configurations, from a very small penalty (we are not interes
 
 Use the script 'run_and_plot' to run the 3 scenarios.
 
+### Robustness Test
+
+The test_robustness MATLAB script performs robustness analysis for a vehicle speed control system with Extended Kalman Filter (EKF) state estimation. The script evaluates the controller's performance across different vehicle parameters to assess system robustness:
+
+- Vehicle mass (±25% variation from nominal)
+- Aerodynamic drag coefficient (±25% variation from nominal)
+
+Generates comparative plots showing:
+1. Speed tracking performance
+2. Control effort (applied force)
+3. Force disturbance estimation via EKF
+
+#### How It Works
+The script runs multiple simulations using a Simulink model (model.slx) with different combinations of mass and drag coefficients. For each simulation:
+
+- Vehicle mass varies between 75% and 125% of nominal value
+- Drag coefficient varies between 75% and 125% of nominal value
+- The vehicle follows a predefined speed trajectory (10 → 50 → 60 → 10 m/s)
+
+#### Output
+
+The script generates a figure with three subplots showing:
+
+1. Speed Tracking: Compares actual vehicle speed with the reference trajectory across all parameter combinations
+2. Control Force: Shows the control input required for each parameter combination
+3. Disturbance Estimation: Displays the EKF's estimation of force disturbances
+
 ## Code and Model
 The MATLAB and Simulink models for this project are available in the GitHub repository: [taycan-MPC-slope-zero-offset-EKF](https://github.com/simorxb/taycan-MPC-slope-zero-offset-EKF).
 
