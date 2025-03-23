@@ -67,7 +67,7 @@ Use the script 'run_and_plot' to run the 3 scenarios.
 
 ### Robustness Test
 
-The test_robustness MATLAB script performs robustness analysis for a vehicle speed control system with Extended Kalman Filter (EKF) state estimation. The script evaluates the controller's performance across different vehicle parameters to assess system robustness:
+The ```test_robustness.m``` MATLAB script performs robustness analysis for a vehicle speed control system with Extended Kalman Filter (EKF) state estimation. The script evaluates the controller's performance across different vehicle parameters to assess system robustness:
 
 - Vehicle mass (±25% variation from nominal)
 - Aerodynamic drag coefficient (±25% variation from nominal)
@@ -91,6 +91,17 @@ The script generates a figure with three subplots showing:
 1. Speed Tracking: Compares actual vehicle speed with the reference trajectory across all parameter combinations
 2. Control Force: Shows the control input required for each parameter combination
 3. Disturbance Estimation: Displays the EKF's estimation of force disturbances
+
+### MPC vs PID
+
+In this example we want to compare the previously described non-linear MPC + EKF control architecture with a simpler PID control architecture described below.
+The PID has been tuned to achieve a response comparable to the non-linear MPC architecture in terms of rising time.
+The PID control architecture includes a dynamic saturation calculator that computes $F_{max}$ and $F_{min}$ based on the measured speed (we assume that this architecture has some knowledge of the controlled system, to make the comparison more fair against the MPC which has a lot of knowledge of the system).
+
+The ```run_mpc_vs_pid.m``` script runs the Simulink model ```model_with_PID.slx``` with both MPC and PID active and generates comparative plots showing:
+1. Speed tracking performance
+2. Control effort (applied force)
+3. Slope disturbance
 
 ## Code and Model
 The MATLAB and Simulink models for this project are available in the GitHub repository: [taycan-MPC-slope-zero-offset-EKF](https://github.com/simorxb/taycan-MPC-slope-zero-offset-EKF).
