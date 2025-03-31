@@ -2,7 +2,7 @@
 init;
 
 % Select reference
-ref = 1;
+ref = 2;
 
 % PID tuning
 kp = 2200;
@@ -16,7 +16,7 @@ cov_meas = 1;
 nlobj.Weights.ManipulatedVariablesRate = 0.0001;
 
 % Road slope angle (degrees)
-theta_V = [0 0 0 0 0 10 0 -10];
+theta_V = [0 0 0 0 0 -15 0 15];
 
 % Reference speed trajectory points (m/s)
 speed_ref_V = [10 50 60 10 30 30 30 30];
@@ -98,6 +98,33 @@ title('Control Effort');
 
 % Slope disturbance (only need to plot once as it's the same)
 subplot(3, 1, 3);
+stairs(t_theta{1}, theta{1}, 'k', 'LineWidth', 2);
+xlabel('Time (s)');
+ylabel('\theta (deg)');
+set(gca, 'FontSize', 12);
+grid on;
+title('Slope Disturbance');
+
+% Plot comparison of results between MPC and PID (ref test)
+figure;
+
+% Speed tracking performance (error)
+subplot(2, 1, 1);
+hold on;
+colors = {'b', 'r'};
+for ctrl_idx = 1:length(controllers)
+    plot(t_speed{ctrl_idx}, speed_ref{ctrl_idx} - speed{ctrl_idx}, colors{ctrl_idx}, 'LineWidth', 2);
+end
+% stairs(t_speed_ref{1}, speed_ref{1}, 'k--', 'LineWidth', 2);
+hold off;
+ylabel('Speed (m/s)');
+legend([controller_names], 'FontSize', 10, 'Location', 'best');
+set(gca, 'FontSize', 12);
+grid on;
+title('Speed Tracking Performance (Error)');
+
+% Slope disturbance (only need to plot once as it's the same)
+subplot(2, 1, 2);
 stairs(t_theta{1}, theta{1}, 'k', 'LineWidth', 2);
 xlabel('Time (s)');
 ylabel('\theta (deg)');
