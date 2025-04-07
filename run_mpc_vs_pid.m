@@ -4,6 +4,9 @@ init;
 % Select reference
 ref = 1;
 
+% Noise power
+noise_power = 0.05;
+
 % PID tuning
 kp = 2200;
 ki = 300;
